@@ -40,6 +40,10 @@ public abstract class BinaryExpression implements Expression {
 
     @Override
     public Set<Integer> getArguments() {
-        return List.of(first, second).stream().map(Expression::getArguments).flatMap(Set::stream).collect(Collectors.toSet());
+        return List.of(first, second)
+                .stream()
+                .map(Expression::getArguments)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 }

@@ -1,17 +1,28 @@
 package newton;
 
 import expression.Expression;
+import matrix.Gradient;
+import matrix.HesseMatrix;
+import util.VectorUtil;
 
 public class ClassicalNewton {
-    private final Expression function;
+    private final Gradient gradient;
+    private final HesseMatrix hesseMatrix;
+    private double[] x;
     private final double eps;
 
-    public ClassicalNewton(Expression function, double eps) {
-        this.function = function;
+    public ClassicalNewton(Expression function, double[] x, double eps) {
+        this.gradient = new Gradient(function);
+        this.hesseMatrix = new HesseMatrix(function);
         this.eps = eps;
+        this.x = x;
     }
 
-    private boolean halt() {
-        return false;
+    public double[] minimize() {
+        double[] grad = gradient.evaluate(x);
+    }
+
+    private boolean halt(double[] p) {
+        return VectorUtil.norm(p) < eps;
     }
 }
