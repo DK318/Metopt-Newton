@@ -14,7 +14,7 @@ public class Gradient {
         }
     }
 
-    public double[] evaluate(double x) {
+    public double[] evaluate(double[] x) {
         double[] result = new double[n + 1];
         for (int i = 1; i <= n; i++) {
             result[i] = gradient[i].evaluate(x);
