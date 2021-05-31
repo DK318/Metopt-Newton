@@ -25,7 +25,6 @@ public class ClassicalNewton {
             double[][] hesse = hesseMatrix.evaluate(x);
             double[] p = new double[x.length + 1];
             GaussSolver.solve(hesse, grad, p, 1e-7);
-            System.arraycopy(p, 1, p, 0, x.length);
             x = VectorUtil.subtract(x, p);
             if (halt(grad)) {
                 break;

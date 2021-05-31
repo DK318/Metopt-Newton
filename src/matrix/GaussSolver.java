@@ -66,6 +66,8 @@ public class GaussSolver {
             }
         }
 
+        System.arraycopy(result, 1, result, 0, m);
+
         return 1;
     }
 

@@ -46,7 +46,6 @@ public class OneDimensionalNewton {
             GaussSolver.solve(hesse, VectorUtil.multiplyByScalar(grad, -1.0), p, 1e-7);
             alpha = getMin();
 
-            System.arraycopy(p, 1, p, 0, x.length);
             x = VectorUtil.add(x, VectorUtil.multiplyByScalar(p, alpha));
             if (halt(p)) {
                 break;
