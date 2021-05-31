@@ -10,7 +10,7 @@ public class Square extends UnaryExpression {
 
     @Override
     public Expression differentiate(final int var) {
-        return new Multiply(Constant.TWO, term.differentiate(var));
+        return new Multiply(new Multiply(Constant.TWO, term), term.differentiate(var));
     }
 
     @Override
