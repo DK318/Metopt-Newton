@@ -1,6 +1,7 @@
 package newton;
 
 import expression.Expression;
+import matrix.GaussSolver;
 import matrix.Gradient;
 import matrix.HesseMatrix;
 import util.VectorUtil;
@@ -19,7 +20,17 @@ public class ClassicalNewton {
     }
 
     public double[] minimize() {
-        return null;
+        while (true) {
+            double[] grad = gradient.evaluate(x);
+            double[][] hesse = hesseMatrix.evaluate(x);
+            double[] p = new double[x.length + 1];
+            GaussSolver.solve(hesse, VectorUtil.multiplyByScalar(grad, -1.0), p, 1e-7);
+            x = VectorUtil.add(x, p);
+            if (halt(p)) {
+                break;
+            }
+        }
+        return x;
     }
 
     private boolean halt(double[] p) {
