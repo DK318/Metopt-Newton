@@ -4,7 +4,19 @@ import java.util.function.BinaryOperator;
 
 public class Multiply extends BinaryExpression {
 
-    protected Multiply(final Expression first, final Expression second) {
+    public Multiply(final Expression first, final Expression second) {
+        super(first, second);
+    }
+
+    public Multiply(final Expression first, final double second) {
+        super(first, second);
+    }
+
+    public Multiply(final double first, final Expression second) {
+        super(first, second);
+    }
+
+    public Multiply(final double first, final double second) {
         super(first, second);
     }
 

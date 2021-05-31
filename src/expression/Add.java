@@ -4,7 +4,19 @@ import java.util.function.BinaryOperator;
 
 public class Add extends BinaryExpression {
 
-    protected Add(final Expression first, final Expression second) {
+    public Add(final Expression first, final Expression second) {
+        super(first, second);
+    }
+
+    public Add(final Expression first, final double second) {
+        super(first, second);
+    }
+
+    public Add(final double first, final Expression second) {
+        super(first, second);
+    }
+
+    public Add(final double first, final double second) {
         super(first, second);
     }
 

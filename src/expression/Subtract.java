@@ -5,7 +5,19 @@ import java.util.function.Function;
 
 public class Subtract extends BinaryExpression {
 
-    protected Subtract(final Expression first, final Expression second) {
+    public Subtract(final Expression first, final Expression second) {
+        super(first, second);
+    }
+
+    public Subtract(final Expression first, final double second) {
+        super(first, second);
+    }
+
+    public Subtract(final double first, final Expression second) {
+        super(first, second);
+    }
+
+    public Subtract(final double first, final double second) {
         super(first, second);
     }
 

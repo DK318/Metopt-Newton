@@ -10,10 +10,26 @@ public abstract class BinaryExpression implements Expression {
     protected final Expression first;
     protected final Expression second;
 
-    protected BinaryExpression(final Expression first, final Expression second) {
+    public BinaryExpression(final Expression first, final Expression second) {
         this.first = first;
         this.second = second;
     }
+
+    public BinaryExpression(final Expression first, final double second) {
+        this.first = first;
+        this.second = new Constant(second);
+    }
+
+    public BinaryExpression(final double first, final Expression second) {
+        this.first = new Constant(first);
+        this.second = second;
+    }
+
+    public BinaryExpression(final double first, final double second) {
+        this.first = new Constant(first);
+        this.second = new Constant(second);
+    }
+
 
     @Override
     public double evaluate(final double... args) {

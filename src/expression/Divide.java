@@ -8,6 +8,18 @@ public class Divide extends BinaryExpression {
         super(first, second);
     }
 
+    public Divide(final Expression first, final double second) {
+        super(first, second);
+    }
+
+    public Divide(final double first, final Expression second) {
+        super(first, second);
+    }
+
+    public Divide(final double first, final double second) {
+        super(first, second);
+    }
+
     @Override
     protected BinaryOperator<Double> getFunction() {
         return (a, b) -> a / b;
