@@ -5,7 +5,7 @@ import java.util.function.UnaryOperator;
 
 public abstract class UnaryExpression implements Expression {
 
-    private final Expression term;
+    protected final Expression term;
 
     protected UnaryExpression(final Expression term) {
         this.term = term;

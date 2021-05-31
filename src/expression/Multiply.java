@@ -15,6 +15,9 @@ public class Multiply extends BinaryExpression {
 
     @Override
     public Expression differentiate(final int var) {
-        return null;
+        return new Add(
+                new Multiply(first.differentiate(var), second),
+                new Multiply(first, second.differentiate(var))
+        );
     }
 }

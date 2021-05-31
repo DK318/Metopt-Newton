@@ -15,6 +15,12 @@ public class Divide extends BinaryExpression {
 
     @Override
     public Expression differentiate(final int var) {
-        return null;
+        return new Divide(
+                new Subtract(
+                        new Multiply(first.differentiate(var), second),
+                        new Multiply(first, second.differentiate(var))
+                ),
+                new Square(second)
+        );
     }
 }

@@ -7,6 +7,7 @@ public class Constant implements Expression {
 
     public static final Constant ZERO = new Constant(0);
     public static final Constant ONE = new Constant(1);
+    public static final Constant TWO = new Constant(2);
 
     private final double value;
 

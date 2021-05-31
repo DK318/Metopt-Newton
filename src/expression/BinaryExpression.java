@@ -2,9 +2,7 @@ package expression;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public abstract class BinaryExpression implements Expression {

@@ -16,6 +16,6 @@ public class Subtract extends BinaryExpression {
 
     @Override
     public Expression differentiate(final int var) {
-        return null;
+        return new Subtract(first.differentiate(var), second.differentiate(var));
     }
 }
