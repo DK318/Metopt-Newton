@@ -11,7 +11,7 @@ public class GaussSolver {
         GaussMatrix matrix = new GaussMatrix(denseMatrix, b);
 
         int n = matrix.getN();
-        int m = matrix.getN() - 1;
+        int m = matrix.getN();
 
         int[] where = new int[m + 1];
         Arrays.fill(where, -1);
@@ -79,7 +79,7 @@ public class GaussSolver {
         }
 
         public double get(int i, int j) {
-            if (j > matrix.length) {
+            if (j >= matrix.length) {
                 return b[i];
             } else {
                 return matrix[i][j];
@@ -87,7 +87,7 @@ public class GaussSolver {
         }
 
         public void set(int i, int j, double val) {
-            if (j > matrix.length) {
+            if (j >= matrix.length) {
                 b[i] = val;
             } else {
                 matrix[i][j] = val;
@@ -95,7 +95,7 @@ public class GaussSolver {
         }
 
         public int getN() {
-            return matrix.length;
+            return matrix.length - 1;
         }
     }
 }
