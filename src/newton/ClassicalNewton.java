@@ -24,9 +24,10 @@ public class ClassicalNewton {
             double[] grad = gradient.evaluate(x);
             double[][] hesse = hesseMatrix.evaluate(x);
             double[] p = new double[x.length + 1];
-            GaussSolver.solve(hesse, VectorUtil.multiplyByScalar(grad, -1.0), p, 1e-7);
-            x = VectorUtil.add(x, p);
-            if (halt(p)) {
+            GaussSolver.solve(hesse, grad, p, 1e-7);
+            System.arraycopy(p, 1, p, 0, x.length);
+            x = VectorUtil.subtract(x, p);
+            if (halt(grad)) {
                 break;
             }
         }
