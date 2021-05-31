@@ -19,7 +19,7 @@ public class ClassicalNewton {
     }
 
     public double[] minimize() {
-        double[] grad = gradient.evaluate(x);
+        return null;
     }
 
     private boolean halt(double[] p) {

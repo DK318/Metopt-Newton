@@ -4,7 +4,7 @@ import java.util.function.BinaryOperator;
 
 public class Divide extends BinaryExpression {
 
-    protected Divide(final Expression first, final Expression second) {
+    public Divide(final Expression first, final Expression second) {
         super(first, second);
     }
 
