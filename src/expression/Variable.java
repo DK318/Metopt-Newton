@@ -12,7 +12,7 @@ public class Variable implements Expression {
 
     @Override
     public double evaluate(final double... args) {
-        return args[variable - 1];
+        return args[variable];
     }
 
     @Override

@@ -1,7 +1,7 @@
 package newton;
 
 import expression.Expression;
-import util.VectorUtil;
+import util.MatrixUtil;
 
 public class DescendNewton extends OneDimensionalNewton {
     public DescendNewton(Expression function, double[] x, double eps) {
@@ -12,11 +12,7 @@ public class DescendNewton extends OneDimensionalNewton {
     protected double[] getDirection(double[][] hesse, double[] minusGrad) {
         double[] p = super.getDirection(hesse, minusGrad);
 
-        System.arraycopy(minusGrad, 1, minusGrad, 0, minusGrad.length - 1);
-        minusGrad[minusGrad.length - 1] = 0;
-        p[x.length] = 0;
-
-        double condition = VectorUtil.scalarMultiply(p, minusGrad);
+        double condition = MatrixUtil.scalarMultiply(p, minusGrad);
         if (condition < 0) {
             p = minusGrad;
         }

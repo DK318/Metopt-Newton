@@ -4,6 +4,9 @@ import matrix.HesseMatrix;
 import newton.ClassicalNewton;
 import newton.DescendNewton;
 import newton.OneDimensionalNewton;
+import quasinewton.BFSMethod;
+import quasinewton.PowellMethod;
+import util.MatrixUtil;
 
 import java.util.Arrays;
 
@@ -18,7 +21,23 @@ public class Main {
 //        Gradient gradient = new Gradient(function);
 //        System.out.println(Arrays.toString(gradient.evaluate(new double[]{4, 1})));
         //ClassicalNewton newton = new ClassicalNewton(function, new double[]{-1.2, 1}, 1e-7);
-        DescendNewton newton = new DescendNewton(function, new double[]{-1.2, 1}, 1e-9);
+        PowellMethod newton = new PowellMethod(function, new double[]{0, 10, 20}, 1e-9);
         System.out.println(Arrays.toString(newton.minimize()));
+//        double[][] matrix1 = {
+//                {0, 0, 0, 0},
+//                {0, 1, 2, 3},
+//                {0, 2, 4, 6},
+//                {0, 3, 6, 9}
+//        };
+//        double[][] matrix2 = {
+//                {0, 0, 0, 0},
+//                {0, 3, 1, 8},
+//                {0, 2, 6, 9},
+//                {0, 2, 2, 9}
+//        };
+//        System.out.println(Arrays.deepToString(MatrixUtil.multiplyMatrixByMatrix(matrix1, matrix2)));
+//        double[] vector1 = {0, 3, 2, 4};
+//        double[] vector2 = {0, 7, 3, 4};
+//        System.out.println(Arrays.deepToString(MatrixUtil.getIdentity(5)));
     }
 }

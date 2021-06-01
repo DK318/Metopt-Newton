@@ -10,7 +10,7 @@ public class ClassicalNewton extends AbstractNewton {
 
     @Override
     protected double[] getDirection(double[][] hesse, double[] minusGrad) {
-        double[] p = new double[x.length + 1];
+        double[] p = new double[x.length];
         GaussSolver.solve(hesse, minusGrad, p, eps);
         return p;
     }
