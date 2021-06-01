@@ -1,8 +1,6 @@
 package newton;
 
 import expression.Expression;
-import linear.DichotomyStrategy;
-import linear.IterationResult;
 import matrix.GaussSolver;
 import matrix.Gradient;
 import matrix.HesseMatrix;
@@ -24,18 +22,6 @@ public class OneDimensionalNewton {
         this.x = x;
     }
 
-    private double getMin() {
-        DichotomyStrategy strategy = new DichotomyStrategy(
-                (alpha) -> function.evaluate(VectorUtil.add(x, VectorUtil.multiplyByScalar(p, alpha))),0, 1e9);
-
-        double res = -228;
-        for (IterationResult it : strategy) {
-            res = it.solutionX;
-        }
-
-        return res;
-    }
-
     public double[] minimize() {
         double alpha;
 
@@ -44,10 +30,10 @@ public class OneDimensionalNewton {
             double[][] hesse = hesseMatrix.evaluate(x);
             p = new double[x.length + 1];
             GaussSolver.solve(hesse, VectorUtil.multiplyByScalar(grad, -1.0), p, 1e-7);
-            alpha = getMin();
+            alpha = new Dichotomy().minimize();
 
             x = VectorUtil.add(x, VectorUtil.multiplyByScalar(p, alpha));
-            if (halt(p)) {
+            if (halt(grad)) {
                 break;
             }
         }
@@ -56,5 +42,33 @@ public class OneDimensionalNewton {
 
     private boolean halt(double[] p) {
         return VectorUtil.norm(p) < eps;
+    }
+
+    private class Dichotomy {
+        private double leftBound = 1;
+        private double rightBound = 1000;
+
+        private double f(double val) {
+            return function.evaluate(VectorUtil.add(x, VectorUtil.multiplyByScalar(p, val)));
+        }
+
+        public double minimize() {
+            double x1 = 0;
+            while (!halt()) {
+                x1 = (leftBound + rightBound) / 2;
+                double fx1Left = f(x1 - eps);
+                double fx1Right = f(x1 + eps);
+                if (fx1Left < fx1Right) {
+                    rightBound = x1;
+                } else {
+                    leftBound = x1;
+                }
+            }
+            return x1;
+        }
+
+        private boolean halt() {
+            return Math.abs(rightBound - leftBound) < eps;
+        }
     }
 }
