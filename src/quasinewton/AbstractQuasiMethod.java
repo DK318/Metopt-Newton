@@ -28,7 +28,7 @@ public abstract class AbstractQuasiMethod {
         double[] prevX = x.clone();
         x = add(prevX, multiplyByScalar(p, alpha));
         double[] deltaX = subtract(x, prevX);
-        while (!halt(deltaX)) {
+        while (!halt(prevW)) {
             double[] w = multiplyByScalar(gradient.evaluate(x), -1);
             double[] deltaW = subtract(w, prevW);
             prevW = w;

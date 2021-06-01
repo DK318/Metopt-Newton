@@ -1,4 +1,6 @@
 import expression.*;
+import marquardt.MarquardtFirstVariant;
+import marquardt.MarquardtSecondVariant;
 import matrix.Gradient;
 import matrix.HesseMatrix;
 import newton.ClassicalNewton;
@@ -21,7 +23,69 @@ public class Main {
 //        Gradient gradient = new Gradient(function);
 //        System.out.println(Arrays.toString(gradient.evaluate(new double[]{4, 1})));
         //ClassicalNewton newton = new ClassicalNewton(function, new double[]{-1.2, 1}, 1e-7);
-        PowellMethod newton = new PowellMethod(function, new double[]{0, 10, 20}, 1e-9);
+        /*Expression function = new Add(
+                new Add(
+                        new Add(
+                                new Square(
+                                        new Add(
+                                                new Variable(1),
+                                                new Multiply(10, new Variable(2))
+                                        )
+                                ),
+                                new Multiply(
+                                        5,
+                                        new Square(
+                                                new Subtract(
+                                                        new Variable(3),
+                                                        new Variable(4)
+                                                )
+                                        )
+                                )
+                        ),
+                        new Square(
+                                new Square(
+                                        new Subtract(
+                                                new Variable(2),
+                                                new Multiply(
+                                                        2, new Variable(3)
+                                                )
+                                        )
+                                )
+                        )
+                ),
+                new Multiply(
+                        10,
+                        new Square(
+                                new Square(
+                                        new Subtract(
+                                                new Variable(1),
+                                                new Variable(4)
+                                        )
+                                )
+                        )
+                )
+        );*/
+        /*Expression function = new Add(
+                new Square(
+                        new Subtract(
+                                new Add(
+                                        new Square(new Variable(1)),
+                                        new Variable(2)
+                                ),
+                                11
+                        )
+                ),
+                new Square(
+                        new Subtract(
+                                new Add(
+                                        new Variable(1),
+                                        new Square(new Variable(2))
+                                ),
+                                7
+                        )
+                )
+        );*/
+        BFSMethod newton = new BFSMethod(function, new double[]{0, -10, 10}, 1e-4);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},
