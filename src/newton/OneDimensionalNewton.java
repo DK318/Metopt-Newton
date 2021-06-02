@@ -1,7 +1,7 @@
 package newton;
 
 import expression.Expression;
-import linear.Dichotomy;
+import linear.Fibonacci;
 
 public class OneDimensionalNewton extends ClassicalNewton {
     public OneDimensionalNewton(Expression function, double[] x, double eps) {
@@ -10,6 +10,6 @@ public class OneDimensionalNewton extends ClassicalNewton {
 
     @Override
     protected double getAlpha() {
-        return new Dichotomy(function, x, p, eps).minimize();
+        return new Fibonacci(function, x, p, eps).minimize();
     }
 }

@@ -28,11 +28,11 @@ public abstract class AbstractNewton {
     public double[] minimize() {
         while (true) {
             double[] minusGrad = MatrixUtil.multiplyByScalar(gradient.evaluate(x), -1);
-            if (halt(minusGrad)) {
-                break;
-            }
             double[][] hesse = hesseMatrix.evaluate(x);
             p = getDirection(hesse, minusGrad);
+            if (halt(p)) {
+                break;
+            }
 
             double alpha = getAlpha();
 
