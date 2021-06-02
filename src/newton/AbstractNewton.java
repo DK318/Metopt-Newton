@@ -36,8 +36,9 @@ public abstract class AbstractNewton {
     public List<Iteration> getIteratios() {
         final List<Iteration> iterations = new ArrayList<>();
         while (true) {
-            double[] minusGrad = MatrixUtil.multiplyByScalar(gradient.evaluate(x), -1);
-            double[][] hesse = hesseMatrix.evaluate(x);
+            final double[] minusGrad = MatrixUtil.multiplyByScalar(gradient.evaluate(x), -1);
+            final double[][] hesse = hesseMatrix.evaluate(x);
+
             p = getDirection(hesse, minusGrad);
             if (halt(p)) {
                 break;

@@ -11,14 +11,14 @@ public class Dichotomy {
     private final double[] p;
     private final double eps;
 
-    public Dichotomy(Expression function, double[] x, double[] p, double eps) {
+    public Dichotomy(final Expression function, final double[] x, final double[] p, final double eps) {
         this.function = function;
         this.x = x;
         this.p = p;
         this.eps = eps;
     }
 
-    private double f(double val) {
+    private double f(final double val) {
         return function.evaluate(MatrixUtil.add(x, MatrixUtil.multiplyByScalar(p, val)));
     }
 
@@ -26,8 +26,8 @@ public class Dichotomy {
         double x1 = 0;
         while (!halt()) {
             x1 = (leftBound + rightBound) / 2;
-            double fx1Left = f(x1 - eps);
-            double fx1Right = f(x1 + eps);
+            final double fx1Left = f(x1 - eps);
+            final double fx1Right = f(x1 + eps);
             if (fx1Left < fx1Right) {
                 rightBound = x1;
             } else {
