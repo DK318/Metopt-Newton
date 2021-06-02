@@ -1,6 +1,8 @@
 package quasinewton;
 
 import expression.Expression;
+import linear.Fibonacci;
+import linear.GoldenRatio;
 import matrix.Gradient;
 
 import static util.MatrixUtil.*;
@@ -24,11 +26,11 @@ public abstract class AbstractQuasiMethod {
         double[][] g = getIdentity(function.getArity());
         double[] prevW = multiplyByScalar(gradient.evaluate(x), -1);
         double[] p = prevW;
-        double alpha = 1; //new Dichotomy(function, x, p, eps).minimize(); (bad accuracy)
+        double alpha = new Fibonacci(function, x, p, eps).minimize();
         double[] prevX = x.clone();
         x = add(prevX, multiplyByScalar(p, alpha));
         double[] deltaX = subtract(x, prevX);
-        while (!halt(prevW)) {
+        while (!halt(deltaX)) {
             double[] w = multiplyByScalar(gradient.evaluate(x), -1);
             double[] deltaW = subtract(w, prevW);
             prevW = w;
@@ -37,7 +39,7 @@ public abstract class AbstractQuasiMethod {
             g = nextG(v, deltaW, deltaX, g);
 
             p = multiplyMatrixByVector(g, w);
-            alpha = 1; //new Dichotomy(function, x, p, eps * 1e-4).minimize(); (bad accuracy) =(
+            alpha = new Fibonacci(function, x, p, eps).minimize();
             prevX = x.clone();
             x = add(prevX, multiplyByScalar(p, alpha));
             deltaX = subtract(x, prevX);

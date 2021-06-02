@@ -85,7 +85,7 @@ public class Main {
                         )
                 )
         );*/
-        BFSMethod newton = new BFSMethod(function, new double[]{0, -10, 10}, 1e-4);
+        OneDimensionalNewton newton = new OneDimensionalNewton(function, new double[]{0, 100, 100}, 1e-5);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},

@@ -23,7 +23,7 @@ public class BFSMethod extends AbstractQuasiMethod {
         double[][] second = multiplyMatrixByScalar(
                 multiplyMatrixByMatrix(
                         multiplyVectorByTransposedVector(
-                                multiplyMatrixByVector(g, deltaW),
+                                v,
                                 deltaW
                         ),
                         transpose(g)

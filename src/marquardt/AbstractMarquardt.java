@@ -32,7 +32,7 @@ public abstract class AbstractMarquardt {
     public double[] minimize() {
         double fx = function.evaluate(x);
         double[] p = new double[x.length];
-        while (true) {
+        do {
             double[] grad = gradient.evaluate(x);
             double[] minusGrad = multiplyByScalar(grad, -1);
             double[][] hesse = hesseMatrix.evaluate(x);
@@ -56,10 +56,7 @@ public abstract class AbstractMarquardt {
             x = y.clone();
             fx = fy;
             tauZero *= beta;
-            if (halt(p)) {
-                break;
-            }
-        }
+        } while (!halt(p));
         return x;
     }
 
