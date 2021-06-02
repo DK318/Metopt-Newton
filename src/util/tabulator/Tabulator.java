@@ -24,12 +24,12 @@ public class Tabulator {
     }
 
     private static void tabulate(final AbstractNewton newtonMethod) {
-        final List<AbstractNewton.Iteration> iteratios = newtonMethod.getIteratios();
+        final List<AbstractNewton.Iteration> iterations = newtonMethod.getIteratios();
 
         System.out.println("Newton method: " + newtonMethod.getClass().getSimpleName());
         System.out.println("\\begin{tabular}{|c|c|c|c|}");
         System.out.println("\t \\hline Итерация & $|p_k|$ & $x_k$ & $\\alpha$ \\\\");
-        iteratios.forEach(Tabulator::printIteration);
+        iterations.forEach(Tabulator::printIteration);
         System.out.println("\\end{tabular}");
     }
 
@@ -42,13 +42,13 @@ public class Tabulator {
     }
 
     private static String getX(final double[] x) {
-        return String.format("(%s)", Arrays.stream(x).mapToObj(Double::toString).collect(Collectors.joining(", ")));
+        return String.format("(%s)", Arrays.stream(x).skip(1).mapToObj(Double::toString).collect(Collectors.joining(", ")));
     }
 
     public static void main(final String[] args) {
         tabulate(new Add(
                 new Square(new Subtract(new Variable(1), 3)),
                 new Square(new Subtract(new Variable(2), 4))
-        ), 1e-2, 0, 0);
+        ), 1e-2, 0, 0, 0);
     }
 }
