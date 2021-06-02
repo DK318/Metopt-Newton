@@ -85,7 +85,7 @@ public class Main {
                         )
                 )
         );*/
-        OneDimensionalNewton newton = new OneDimensionalNewton(function, new double[]{0, 100, 100}, 1e-5);
+        MarquardtSecondVariant newton = new MarquardtSecondVariant(function, new double[]{0, 100, 100}, 10, 0.2, 1e-5);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},

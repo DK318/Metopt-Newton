@@ -1,6 +1,7 @@
 package marquardt;
 
 import expression.Expression;
+import matrix.ConjugateGradientsSolver;
 import matrix.GaussSolver;
 import matrix.Gradient;
 import matrix.HesseMatrix;
@@ -31,7 +32,7 @@ public abstract class AbstractMarquardt {
 
     public double[] minimize() {
         double fx = function.evaluate(x);
-        double[] p = new double[x.length];
+        double[] p;
         do {
             double[] grad = gradient.evaluate(x);
             double[] minusGrad = multiplyByScalar(grad, -1);
@@ -44,7 +45,7 @@ public abstract class AbstractMarquardt {
                 while (!checkLS(ls)) {
                     tau = Math.max(1, 2 * tau);
                 }
-                GaussSolver.solve(ls, minusGrad, p, eps);
+                p = ConjugateGradientsSolver.solve(ls, minusGrad, eps, 1000000000);
                 y = add(x, p);
                 fy = function.evaluate(y);
                 if (fy > fx) {

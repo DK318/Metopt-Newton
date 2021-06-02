@@ -7,6 +7,15 @@ public class MatrixUtil {
         // Util class.
     }
 
+    public static double[] multiply(double[][] matrix, double[] x) {
+        int n = x.length - 1;
+        double[] result = new double[x.length];
+        IntStream.range(0, n + 1)
+                .forEach(i -> IntStream.range(0, n + 1)
+                        .forEach(j -> result[i] += matrix[i][j] * x[j]));
+        return result;
+    }
+
     public static double[] add(double[] lhs, double[] rhs) {
         double[] result = new double[lhs.length];
         IntStream.range(0, lhs.length).forEach(i -> result[i] = lhs[i] + rhs[i]);

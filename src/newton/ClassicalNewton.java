@@ -1,6 +1,7 @@
 package newton;
 
 import expression.Expression;
+import matrix.ConjugateGradientsSolver;
 import matrix.GaussSolver;
 
 public class ClassicalNewton extends AbstractNewton {
@@ -10,9 +11,7 @@ public class ClassicalNewton extends AbstractNewton {
 
     @Override
     protected double[] getDirection(double[][] hesse, double[] minusGrad) {
-        double[] p = new double[x.length];
-        GaussSolver.solve(hesse, minusGrad, p, eps);
-        return p;
+        return ConjugateGradientsSolver.solve(hesse, minusGrad, eps, 100000000);
     }
 
     @Override
