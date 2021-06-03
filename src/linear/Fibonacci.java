@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fibonacci {
-    private double leftBound = -1000;
-    private double rightBound = 1000;
+    private double leftBound = -1000000;
+    private double rightBound = 1000000;
     private final Expression function;
     private final double[] x;
     private final double[] p;

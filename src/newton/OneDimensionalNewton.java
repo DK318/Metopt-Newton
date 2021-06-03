@@ -2,6 +2,7 @@ package newton;
 
 import expression.Expression;
 import linear.Fibonacci;
+import linear.GoldenRatio;
 
 public class OneDimensionalNewton extends ClassicalNewton {
     public OneDimensionalNewton(Expression function, double[] x, double eps) {
@@ -10,6 +11,6 @@ public class OneDimensionalNewton extends ClassicalNewton {
 
     @Override
     protected double getAlpha() {
-        return new Fibonacci(function, x, p, eps).minimize();
+        return new GoldenRatio(function, x, p, eps).minimize();
     }
 }

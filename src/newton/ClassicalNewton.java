@@ -11,7 +11,7 @@ public class ClassicalNewton extends AbstractNewton {
 
     @Override
     protected double[] getDirection(double[][] hesse, double[] minusGrad) {
-        return ConjugateGradientsSolver.solve(hesse, minusGrad, eps, 100000000);
+        return ConjugateGradientsSolver.solve(hesse, minusGrad, eps, 100000000); // Cringe right bound
     }
 
     @Override
