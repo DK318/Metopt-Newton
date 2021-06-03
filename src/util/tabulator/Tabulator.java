@@ -64,11 +64,11 @@ public class Tabulator {
     }
 
     private static void tabulatePodgon(final AbstractNewton newtonMethod) {
-        System.out.println(String.format("[%s]", newtonMethod.getIteratios().stream().map(AbstractNewton.Iteration::getX).map(s -> String.format("(%s, %s)", s[1], s[2])).collect(Collectors.joining(", "))) );
+        System.out.println(String.format("[%s]", newtonMethod.getIteratios().stream().map(AbstractNewton.Iteration::getX).map(s -> String.format("(%04f, %04f)", s[1], s[2])).collect(Collectors.joining(", "))) );
     }
 
     private static void printIteration(final AbstractNewton.Iteration iteration) {
-        System.out.printf("\t \\hline $%s$ & $%s$ & $%s$ & $%s$ \\\\%n",
+        System.out.printf("\t \\hline $%s$ & $%02f$ & $%s$ & $%02f$ \\\\%n",
                 iteration.getN(),
                 iteration.getP(),
                 getX(iteration.getX()),
@@ -76,7 +76,7 @@ public class Tabulator {
     }
 
     private static String getX(final double[] x) {
-        return String.format("(%s)", Arrays.stream(x).skip(1).mapToObj(Double::toString).collect(Collectors.joining(", ")));
+        return String.format("(%s)", Arrays.stream(x).skip(1).mapToObj(s -> String.format("%02f", s)).collect(Collectors.joining(", ")));
     }
 
     public static void main(final String[] args) {
@@ -86,15 +86,13 @@ public class Tabulator {
 //        ), 1e-2, 0, 0, 0);
 
 
-//        final Expression expression1 = new Square(new Square(new Subtract(new Variable(1), 1)));
-//        final Expression expression2 = new Square(new Square(new Add(new Variable(2), 1)));
-//        final Expression expression3 = new Multiply(1, new Multiply(new Square(new Variable(1)), new Square(new Variable(2))));
-//        final Expression expression4 = new Multiply(new Multiply(new Variable(1), new Square(new Variable(1))), new Variable(2));
-//        final Expression expression5 = new Multiply(1, new Multiply(new Variable(1), new Multiply(new Variable(2), new Square(new Variable(2)))));
+        final Expression expression1 = new Square(new Square(new Subtract(new Variable(1), 3)));
+        final Expression expression2 = new Square(new Square(new Subtract(new Variable(2), 4)));
+        final Expression expression3 = new Square(new Add(new Variable(3), 7));
 
-        final Expression expression1 = new Multiply(100, new Square(new Subtract(new Variable(2), new Square(new Variable(1)))));
-        final Expression expression2 = new Square(new Subtract(1, new Variable(1)));
+//        final Expression expression1 = new Multiply(100, new Square(new Subtract(new Variable(2), new Square(new Variable(1)))));
+//        final Expression expression2 = new Square(new Subtract(1, new Variable(1)));
 
-        tabulatePodgon(new Add(expression1, expression2), 1e-2, 0, -1.2, 1);
+        tabulate(new Add(expression1, new Add(expression2, expression3)), 1e-4, 0, 0, 1, -3);
     }
 }
