@@ -1,4 +1,5 @@
 import expression.*;
+import gradient.SteepestDescend;
 import marquardt.MarquardtFirstVariant;
 import marquardt.MarquardtSecondVariant;
 import matrix.Gradient;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-//        Expression function = new Add(new Square(new Variable(1)), new Subtract(new Square(new Variable(2)), new Multiply(new Constant(1.2), new Multiply(new Variable(1), new Variable(2)))));
+        //Expression function = new Add(new Square(new Variable(1)), new Subtract(new Square(new Variable(2)), new Multiply(new Constant(1.2), new Multiply(new Variable(1), new Variable(2)))));
         Expression function = new Add(new Multiply(new Constant(100), new Square(new Subtract(new Variable(2), new Square(new Variable(1))))), new Square(new Subtract(new Constant(1), new Variable(1))));
 //        Expression function = new Add(new Square(new Variable(1)), new Square(new Square(new Variable(2))));
 //        HesseMatrix matrix = new HesseMatrix(function);
@@ -85,7 +86,7 @@ public class Main {
                         )
                 )
         );*/
-        MarquardtSecondVariant newton = new MarquardtSecondVariant(function, new double[]{0, 100, 100}, 10, 0.2, 1e-5);
+        SteepestDescend newton = new SteepestDescend(function, new double[]{0, -1.2, 1}, 1e-2);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},
