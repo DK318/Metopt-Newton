@@ -6,8 +6,8 @@ import util.MatrixUtil;
 public class GoldenRatio {
     private static final double RES_PHI = 2 - (1 + Math.sqrt(5)) / 2;
 
-    private double leftBound = -1000;
-    private double rightBound = 1000;
+    private double leftBound = -10;
+    private double rightBound = 10;
     private final Expression function;
     private final double[] x;
     private final double[] p;

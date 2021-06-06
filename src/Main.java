@@ -85,7 +85,7 @@ public class Main {
                         )
                 )
         );*/
-        MarquardtSecondVariant newton = new MarquardtSecondVariant(function, new double[]{0, 100, 100}, 10, 0.2, 1e-5);
+        BFSMethod newton = new BFSMethod(function, new double[]{0, 1000, 1000}, 1e-7);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},
