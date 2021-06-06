@@ -86,7 +86,7 @@ public class Main {
                         )
                 )
         );*/
-        SteepestDescend newton = new SteepestDescend(function, new double[]{0, -1.2, 1}, 1e-2);
+        SteepestDescend newton = new SteepestDescend(function, new double[]{0, -1.2, 1}, 1e-4);
         System.out.println(Arrays.toString(newton.minimize()));
 //        double[][] matrix1 = {
 //                {0, 0, 0, 0},

@@ -22,14 +22,15 @@ public class SteepestDescend {
     public double[] minimize() {
         while (true) {
             double[] grad = gradient.evaluate(x);
-            if (halt(grad)) {
+            double alpha = new Fuck(-10, 10, function, x, grad, eps).minimize();
+//            if (alpha == 0) {
+//                alpha = 1;
+//            }
+            double[] xPrev = x.clone();
+            x = subtract(x, multiplyByScalar(grad, alpha));
+            if (halt(subtract(x, xPrev))) {
                 break;
             }
-            double alpha = new Fuck(1, 1000, function, x, grad, eps).minimize();
-            if (alpha == 0) {
-                alpha = 1;
-            }
-            x = subtract(x, multiplyByScalar(grad, alpha));
         }
         return x;
     }
